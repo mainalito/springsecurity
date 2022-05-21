@@ -5,5 +5,5 @@ import com.sp.ringsecurity.springsecurity.models.UserPerson;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserSErvice extends UserDetailsService {
-    UserPerson save(UserRegistrationDto registrationDto);
+    void save(UserRegistrationDto registrationDto);
 }

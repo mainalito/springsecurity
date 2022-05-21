@@ -10,6 +10,11 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous"
       />
+      <style>
+        .error {
+            color: red;
+        }
+    </style>
     </head>
     <body>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -65,11 +70,20 @@
 
       <div class="container">
         <form th:action="@{/registration}" th:object="${user}" method="post">
+        
           <div th:if="${param.success}">
             <div class="alert alert-info">
               You have successfully registerd to our awesome app
             </div>
           </div>
+          <!-- <div th:if="${param.error}">
+            <div class="alert alert-danger">
+             Please use your school Registration number
+            </div>
+          </div> -->
+          <div th:if="${errorMessage}">
+            <div class="alert alert-danger" th:text="${errorMessage}"></div>
+        </div>
           <div class="form-group" >
             <label for="exampleInputEmail1">First name</label>
             <input
@@ -93,15 +107,16 @@
             />
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Username</label>
+            <label for="exampleInputEmail1">Registration Number</label>
             <input
             th:field="*{username}"
               type="text"
               class="form-control"
               id="username"
               aria-describedby="emailHelp"
-              placeholder="Enter username"
+              placeholder="Enter registration number"
             />
+            <p class="error" th:errors="${user.username}"></p>
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
